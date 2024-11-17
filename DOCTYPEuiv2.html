@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PT. Uluwatu Inti Valuta - Money Changer</title>
+    <style>
+        /* CSS Styling */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            background-color: #003580;
+            color: #ffffff;
+        }
+
+        .container {
+            background-color: #003580;
+            width: 90%;
+            max-width: 1200px;
+            padding: 20px;
+            border-radius: 10px;
+            border: 5px solid #FFD700;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #FFD700;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #003580;
+        }
+
+        .logo p {
+            color: #ffffff;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .title {
+            text-align: center;
+        }
+
+        .title h1 {
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        .title p {
+            font-size: 16px;
+            color: #FFD700;
+        }
+
+        .rate-date {
+            font-weight: bold;
+            color: #ffffff;
+        }
+
+        .rates {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 20px;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        .rate-row {
+            display: flex;
+            align-items: center;
+            background-color: #800000;
+            width: 160px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+            justify-content: space-between;
+            color: #ffffff;
+        }
+
+        .rate-row .currency {
+            font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 16px;
+        }
+
+        .rate-row .rate {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .no-commission {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: red;
+            background-color: #ffffff;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .disclaimer {
+            margin-top: 20px;
+            font-size: 14px;
+            text-align: center;
+            color: #FFD700;
+        }
+
+        /* Calculator Styling */
+        .calculator {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #FFD700;
+            border-radius: 5px;
+            color: #003580;
+            text-align: center;
+        }
+
+        .calculator label,
+        .calculator input,
+        .calculator select {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+
+        .calculator input[type="number"] {
+            padding: 5px;
+            width: 100px;
+        }
+
+        .calculator-output {
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Responsive Styling */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .title h1 {
+                font-size: 20px;
+            }
+
+            .rate-date {
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title h1 {
+                font-size: 18px;
+            }
+
+            .rate-date {
+                font-size: 12px;
+            }
+
+            .logo-circle {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo p {
+                font-size: 12px;
+            }
+        }
+
+        .cta-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cta-button a {
+            background-color: #28a745; /* Hijau */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button a:hover {
+            background-color: #218838; /* Hijau lebih gelap saat hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">
+                <div class="logo-circle">
+                    <span>U</span>
+                </div>
+                <p>MONEY CHANGER</p>
+            </div>
+            <div class="title">
+                <h1>PT. ULUWATU INTI VALUTA</h1>
+                <p>AUTHORIZED MONEY CHANGER</p>
+                <p class="rate-date">RATE TODAY<br>Jumat, 15 November</p>
+            </div>
+        </div>
+
+        <div class="rates">
+            <!-- Currency Rates -->
+            <div class="rate-row"><div class="currency">🇺🇸 USD (10-100)</div><div class="rate" id="usd-rate">15650</div></div>
+            <div class="rate-row"><div class="currency">🇦🇺 AUD</div><div class="rate" id="aud-rate">10025</div></div>
+            <div class="rate-row"><div class="currency">🇪🇺 EUR</div><div class="rate" id="eur-rate">16500</div></div>
+            <div class="rate-row"><div class="currency">🇬🇧 GBP</div><div class="rate" id="gbp-rate">19825</div></div>
+            <div class="rate-row"><div class="currency">🇨🇦 CAD</div><div class="rate" id="cad-rate">11000</div></div>
+            <div class="rate-row"><div class="currency">🇲🇾 MYR</div><div class="rate" id="myr-rate">3450</div></div>
+            <div class="rate-row"><div class="currency">🇳🇿 NZD</div><div class="rate" id="nzd-rate">8850</div></div>
+            <div class="rate-row"><div class="currency">🇭🇰 HKD</div><div class="rate" id="hkd-rate">1875</div></div>
+            <div class="rate-row"><div class="currency">🇨🇳 CNY (10-100)</div><div class="rate" id="cny-rate">2050</div></div>
+            <div class="rate-row"><div class="currency">🇸🇬 SGD</div><div class="rate" id="sgd-rate">11575</div></div>
+        </div>
+
+        <div class="rate-row no-commission">
+            <span>NO COMMISSION</span>
+        </div>
+
+        <!-- Currency Converter Calculator -->
+        <div class="calculator">
+            <h3>Currency to IDR Calculator</h3>
+            <label for="currency-select">Select Currency:</label>
+            <select id="currency-select" onchange="updateRate()">
+                <option value="usd-rate">USD</option>
+                <option value="aud-rate">AUD</option>
+                <option value="eur-rate">EUR</option>
+                <option value="gbp-rate">GBP</option>
+                <option value="cad-rate">CAD</option>
+                <option value="myr-rate">MYR</option>
+                <option value="nzd-rate">NZD</option>
+                <option value="hkd-rate">HKD</option>
+                <option value="cny-rate">CNY</option>
+                <option value="sgd-rate">SGD</option>
+            </select>
+
+            <label for="currency-rate">Rate:</label>
+            <input type="number" id="currency-rate" readonly>
+
+            <label for="amount">Amount:</label>
+            <input type="number" id="amount" oninput="calculateTotal()" placeholder="Enter amount">
+
+            <div class="calculator-output">
+                Total IDR: <span id="total-idr">0</span>
+            </div>
+        </div>
+
+       ```html
+        <!-- Disclaimer -->
+        <div class="disclaimer">
+            Rate bisa berubah sewaktu waktu tanpa pemberitahuan, dan dapat di nego.
+        </div>
+
+        <!-- CTA Button -->
+        <div class="cta-button">
+            <a href="https://wa.me/628113990399" target="_blank">Chat for Update Rate</a>
+        </div>
+    </div>
+
+    <style>
+        .cta-button {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cta-button a {
+            background-color: #28a745; /* Hijau */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button a:hover {
+            background-color: #218838; /* Hijau lebih gelap saat hover */
+        }
+    </style>
+
+    <script>
+        // Function to update the rate when a currency is selected
+        function updateRate() {
+            const selectedCurrency = document.getElementById('currency-select').value;
+            const rateElement = document.getElementById(selectedCurrency);
+            const rate = rateElement ? rateElement.textContent : 0;
+            document.getElementById('currency-rate').value = rate;
+            calculateTotal(); // Update the total IDR when rate changes
+        }
+
+        // Function to calculate the total in IDR
+        function calculateTotal() {
+            const rate = parseFloat(document.getElementById('currency-rate').value) || 0;
+            const amount = parseFloat(document.getElementById('amount').value) || 0;
+            const totalIDR = rate * amount;
+            document.getElementById('total-idr').textContent = totalIDR.toLocaleString();
+        }
+
+        // Set initial rate based on the default selection
+        updateRate();
+    </script>
+</body>
+</html>
